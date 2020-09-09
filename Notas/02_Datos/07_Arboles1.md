@@ -1,4 +1,4 @@
-[Contenidos](../Contenidos.md) \| [Anterior (6 Contadores del módulo _collections_)](06_Contadores.md) \| [Próximo (8 Impresión con formato*)](08_Formato.md)
+[Contenidos](../Contenidos.md) \| [Anterior (6 Contadores del módulo _collections_)](06_Contadores.md) \| [Próximo (8 Impresión con formato)](08_Formato.md)
 
 # 2.7 Arbolado porteño
 
@@ -19,9 +19,9 @@ Vamos a repasar las herramientas que vimos en esta clase aplicándolas a una bas
 |long            | Número flotante (float) |Coordenadas para geolocalización |
 |lat             | Número flotante (float) |Coordenadas para geolocalización |
 |id_arbol            | Número entero (integer) |Identificador único del árbol |
-|altura_tot          | Número entero (integer) |Altura relevada del árbol |
-|diametro            | Número entero (integer) |Diámetro relevado del árbol |
-|inclinacio          | Número entero (integer) |Inclinación relevada del árbol |
+|altura_tot          | Número entero (integer) |Altura del árbol (m)|
+|diametro            | Número entero (integer) |Diámetro del árbol (cm) |
+|inclinacio          | Número entero (integer) |Inclinación del árbol (grados) |
 |id_especie          | Número entero (integer) |Identificador de la especie |
 |nombre_com          | Texto (string) |Nombre común del árbol |
 |nombre_cie          | Texto (string) |Nombre científico del árbol |
@@ -42,7 +42,7 @@ _Sugerencia: basate en la función `leer_camion()` y usá también el comando `z
 
 _Observación: La columna que indica el nombre del parque en el que se encuentra el árbol se llama `'espacio_ve'` en el archivo CSV._
 
-Probá con el parque "GENERAL PAZ" para tener un ejemplo de trabajo.
+Probá con el parque "GENERAL PAZ" para tener un ejemplo de trabajo, debería darte una lista con 690 árboles.
 
 ### Ejercicio 2.23: Determinar las especies en un parque
 Escribí una función `especies(lista_arboles)` que tome una lista de árboles como la generada en el ejercicio anterior y devuelva el conjunto de especies (la columna `'nombre_com'` del archivo) que figuran en la lista.
@@ -104,5 +104,5 @@ Volvé a combinar las funciones anteriores para escribir la función `especie_pr
 
 
 
-[Contenidos](../Contenidos.md) \| [Anterior (6 Contadores del módulo _collections_)](06_Contadores.md) \| [Próximo (8 Impresión con formato*)](08_Formato.md)
+[Contenidos](../Contenidos.md) \| [Anterior (6 Contadores del módulo _collections_)](06_Contadores.md) \| [Próximo (8 Impresión con formato)](08_Formato.md)
 
