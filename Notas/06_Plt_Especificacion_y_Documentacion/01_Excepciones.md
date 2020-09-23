@@ -332,6 +332,11 @@ Row 7: Motivo: invalid literal for int() with base 10: ''
 >>>
 ```
 
+## Ejercicios:
+
+Trabajá siempre con las últimas versiones de tus archivos. En esta clase vamos a trabajar sonre el archivo `fileparse.py` y también con una nueva versión de `informe.py`. Por favor, copiá `informe_funciones.py` a `informe.py`, que trabajaremos sobre este último archivo.
+
+
 ### Ejercicio 6.1: Errores silenciados
 Modificá `parse_csv()` de modo que le usuarie pueda silenciar los informes de errores en el parseo de los datos que agregaste antes.Por ejemplo:
 
@@ -345,6 +350,8 @@ Modificá `parse_csv()` de modo que le usuarie pueda silenciar los informes de e
  {'cajones': 50, 'nombre': 'Mandarina', 'precio': 65.1}]
 >>>
 ```
+
+Guardá estos cambios que los vamos a usar más adelante.
 
 ### Comentarios
 

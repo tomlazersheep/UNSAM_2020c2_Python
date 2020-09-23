@@ -1,4 +1,4 @@
-[Contenidos](../Contenidos.md) \| [Anterior (6 La biblioteca Matplotlib)](06_Matplotlib.md)
+[Contenidos](../Contenidos.md) \| [Anterior (6 La biblioteca matplotlib)](06_Matplotlib.md)
 
 # 6.7 Cierre de la sexta clase
 
@@ -8,13 +8,13 @@ Vimos que un archivo `.py` correctamente escrito puede usarse como un módulo, c
 
 Aprendimos a documentar y comentar de manera útil, y mostramos el paradigma de contratos. Además vimos algo sobre estilo código estándard.
 
-También estudiamos Vimos diversos estilos de gráficos, como obtener un vistazo rápido de los datos y como ajustar cada elemento para obtener un gráfico que pueda ser publicado.
+También estudiamos diversos estilos de gráficos, como obtener un vistazo rápido de los datos y como ajustar cada elemento para obtener un gráfico que pueda ser publicado.
 
 Para cerrar esta clase te pedimos dos cosas:
 * Que recopiles las soluciones de los siguientes ejercicios:
 
 1. El archivo `fileparse.py` del [Ejercicio 6.4](../06_Plt_Especificacion_y_Documentacion/03_Flexibilidad.md#ejercicio-64-de-archivos-a-objetos-cual-archivos).
-1. El archivo `tabla_informe.py` del [Ejercicio 6.5](../06_Plt_Especificacion_y_Documentacion/03_Flexibilidad.md#ejercicio-65-arreglemos-las-funciones-existentes).
+1. El archivo `informe.py` del [Ejercicio 6.5](../06_Plt_Especificacion_y_Documentacion/03_Flexibilidad.md#ejercicio-65-arreglemos-las-funciones-existentes).
 1. El archivo `documentacion.py` del [Ejercicio 6.8](../06_Plt_Especificacion_y_Documentacion/04_Especificacion_y_Documentacion.md#ejercicio-68-funciones-y-documentación).
 1. El archivo `random_walk.py` del [Ejercicio 6.10](../06_Plt_Especificacion_y_Documentacion/06_Matplotlib.md#ejercicio-610-caminatas-al-azar).
  
@@ -24,5 +24,5 @@ Para cerrar esta clase te pedimos dos cosas:
 
 
 
-[Contenidos](../Contenidos.md) \| [Anterior (6 La biblioteca Matplotlib)](06_Matplotlib.md)
+[Contenidos](../Contenidos.md) \| [Anterior (6 La biblioteca matplotlib)](06_Matplotlib.md)
 

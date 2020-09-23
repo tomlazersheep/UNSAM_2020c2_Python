@@ -55,7 +55,7 @@ Los comandos dentro del `if` constituyen el *programa principal*
 
 ### Módulo principal vs. módulo importado
 
-Cualquier archivo.py puede ejecutarse ya sea como el programa principal o como un módulo importado:  
+Cualquier archivo .py puede ejecutarse ya sea como el programa principal o como un módulo importado:  
 
 ```bash
 bash % python3 prog.py # Corriendo como principal
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 Python se usa muy frecuentemente para correr herramientas desde la línea de comandos. En clase vimos algún ejemplo:
 
 ```bash
-bash % python3 tabla_informe.py camion.csv precios.csv
+bash % python3 informe.py camion.csv precios.csv
 ```
 
 Esto permite que los scripts sean ejecutados desde la terminal para correr ciertos procesos automáticos, ejecutar tareas en segundo plano, etc.
@@ -115,13 +115,13 @@ Esto permite que los scripts sean ejecutados desde la terminal para correr ciert
 Python interpreta una línea de comandos como una lista de cadenas de texto.
 
 ```bash
-bash % python3 tabla_informe.py camion.csv precios.csv
+bash % python3 informe.py camion.csv precios.csv
 ```
 
-Como el script `tabla_informe.py` no está preparado para leer parámetros, no los va a usar. Igual, podés acceder a esta lista de cadenas usando `sys.argv`. Por ejemplo, si usas el parámetro `-i` para invocar a python de modo que el intérprete interactivo no termine luego de llamar a `tabla_informe.py` con los parámetros anteriores
+Como el script `informe.py` no está preparado para leer parámetros, no los va a usar. Igual, podés acceder a esta lista de cadenas usando `sys.argv`. Por ejemplo, si usas el parámetro `-i` para invocar a python de modo que el intérprete interactivo no termine luego de llamar a `informe.py` con los parámetros anteriores
 
 ```bash
-bash % python3 -i tabla_informe.py camion.csv precios.csv
+bash % python3 -i informe.py camion.csv precios.csv
 ```
 luego podrás ver el contenido de esta lista:
 
@@ -225,8 +225,10 @@ def blah():
     ...
 
 # Funcion principal
-def main(argv):
-    # Analizar la línea de comandos, etc.
+def main(parametros):
+    # Analizar la línea de comandos, 
+    # usando la variable parámetros en lugar 
+    # de sys.argv, donde corresponda
     ...
 
 if __name__ == '__main__':
@@ -238,18 +240,20 @@ _Observación: Este modelo es flexible en el sentido que te permite escribir pro
 
 ## Ejercicios
 
+Recordá trabajar siempre con las últimas versiones de tus archivos.
+
 ### Ejercicio 6.2: Función `main()`
-Usando estas ideas, agregá a tu programa `tabla_informe.py` una función `main()` que tome una lista de parámetros en la línea de comandos y produzca la misma salida que antes.
+Usando estas ideas, agregá a tu programa `informe.py` una función `main()` que tome una lista de parámetros en la línea de comandos y produzca la misma salida que antes.
 
 ```bash
-bash % python3 tabla_informe.py Data/camion.csv Data/precios.csv
+bash % python3 informe.py Data/camion.csv Data/precios.csv
 ```
 
 También deberías poder ejecutarlo del siguiente modo dentro del intérprete interactivo de Python:
 
 ```python
->>> import tabla_informe
->>> tabla_informe.main(['tabla_informe.py', 'Data/camion.csv', 'Data/precios.csv'])
+>>> import informe
+>>> informe.main(['informe.py', 'Data/camion.csv', 'Data/precios.csv'])
 
     Nombre    Cajones     Precio     Cambio
  ---------- ---------- ---------- ----------
@@ -274,10 +278,10 @@ Total cost: 47671.15
 ```
 
 ### Ejercicio 6.3: Hacer un script
-Finalmente, modificá tus programas `tabla_informe.py` y `costo_camion.py` para que puedan ser ejecutados como scripts desde la línea de comandos:
+Finalmente, modificá tus programas `informe.py` y `costo_camion.py` para que puedan ser ejecutados como scripts desde la línea de comandos:
 
 ```bash
-bash $ python3 tabla_informe.py Data/camion.csv Data/precios.csv
+bash $ python3 informe.py Data/camion.csv Data/precios.csv
     Nombre    Cajones     Precio     Cambio
  ---------- ---------- ---------- ----------
       Lima        100      $32.2       8.02
@@ -292,6 +296,7 @@ bash $ python3 costo_camion.py Data/camion.csv
 Costo total: 47671.15
 ```
 
+_Aclaración:_  En el ejercicio anterior ya agregaste una función `main()` a tu código. En este simplemente deberías verificar si `__name__ == '__main__'` y llamar a esa función para que se ejecute automáticamente cuando llames a tu programa desde la línea de comandos. 
 
 [Contenidos](../Contenidos.md) \| [Anterior (1 Control de errores)](01_Excepciones.md) \| [Próximo (3 Cuestiones de diseño)](03_Flexibilidad.md)
 

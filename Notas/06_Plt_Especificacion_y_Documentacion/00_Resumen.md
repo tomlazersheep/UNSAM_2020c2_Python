@@ -1,4 +1,4 @@
-[Contenidos](../Contenidos.md) \| [Anterior (5 Complejidad y Organización de programas)](../05_Organización_y_Complejidad/00_Resumen.md) \| [Próximo (7 Creación de módulos, SO y Pandas)](../07_Modulos_Pandas_SO/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (5 Complejidad y Organización de programas)](../05_Organización_y_Complejidad/00_Resumen.md) \| [Próximo (7 Fechas, Carpetas y Pandas)](../07_Fechas_Carpetas_y_Pandas/00_Resumen.md)
 
 # 6. Diseño, especificación, documentación y estilo.
 En este curso queremos que aprendas a escribir un script que te resuelva un problema computacional. Pero también queremos que puedas escribir adecuadamente programas más grandes, que los puedas compartir y volver a usar vos misme unos años más tarde.
@@ -20,8 +20,8 @@ Finalmente, daremos un poco más sistemáticamente algunos conceptos de la bibli
 * [6.3 Cuestiones de diseño](03_Flexibilidad.md)
 * [6.4 Contratos: Especificación y Documentación](04_Especificacion_y_Documentacion.md)
 * [6.5 Estilos de codeo](05_Estilo.md)
-* [6.6 La biblioteca Matplotlib](06_Matplotlib.md)
+* [6.6 La biblioteca matplotlib](06_Matplotlib.md)
 * [6.7 Cierre de la sexta clase](07_Cierre.md)
 
 
-[Contenidos](../Contenidos.md) \| [Anterior (5 Complejidad y Organización de programas)](../05_Organización_y_Complejidad/00_Resumen.md) \| [Próximo (7 Creación de módulos, SO y Pandas)](../07_Modulos_Pandas_SO/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (5 Complejidad y Organización de programas)](../05_Organización_y_Complejidad/00_Resumen.md) \| [Próximo (7 Fechas, Carpetas y Pandas)](../07_Fechas_Carpetas_y_Pandas/00_Resumen.md)
