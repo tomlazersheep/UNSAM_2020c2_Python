@@ -11,7 +11,7 @@ Escribí un programa que dado un directorio, imprima en pantalla los nombres de 
 
 _Observación:_ Al final, tu script debería poder ejecutarse desde la línea de comandos recibiendo como parámetro el directorio a leer original. En la [Sección 6.2](../06_Plt_Especificacion_y_Documentacion/02_Modulo_principal.md#modelo-de-script-con-parámetros) dimos un modelo de script que te puede servir.
 
-Guardá el script resultante en un archivo `listar_imgs.py`. Te lo vamos a pedir y va a ser el tema de la corrección de pares de esta clase.
+Guardá el script resultante en un archivo `listar_imgs.py`. 
 
 ### Ejercicio 7.6: Ordenar el árbol de archivos (optativo)
 Escribí un programa que te permita ordenar las imágenes PNG de esta carpeta. Guardalo en un archivo `ordenar_imgs.py`.
@@ -20,7 +20,7 @@ Escribí un programa que te permita ordenar las imágenes PNG de esta carpeta. G
 2. Usá `os.walk()` para recorrer los archivos en la carpeta `Data/ordenar/` (y sus subcarpetas).
 3. Cuando encuentres archivos con extensión `png` los vas a *procesar*. En este caso *procesar* significa:
     * Leer la fecha que se encuentra codificada en los últimos 8 caracteres de su nombre en el formato AAAAMMDD (año en 4 dígitos, mes en 2 y día en 2).
-    * Usar la fecha obtenida para setear la fecha de última modificación y de último acceso.
+    * Usar la fecha obtenida para setear la fecha de última modificación (y de último acceso si no usás Windows).
     * Cambiarle el nombre al archivo para que no tenga más esos dígitos (ni el guión bajo).
     * Mover el archivo a la carpeta  `Data/imgs_procesadas/`.
 4. Los archivos que no son `png` no los modifiques.

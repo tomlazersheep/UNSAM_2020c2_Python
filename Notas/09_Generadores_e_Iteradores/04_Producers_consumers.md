@@ -1,6 +1,6 @@
 [Contenidos](../Contenidos.md) \| [Anterior (2 [Contents](../Contents.md) \| [Previous (6.1 Iteration Protocol)](01_Iteration_protocol.md) \| [Next (6.3 Producer/Consumer)](03_Producers_consumers.md))](03_iteracion_a_medida.md) \| [Próximo (4 [Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md))](05_Mos_generadores.md)
 
-# 10.3 [Contents](../Contents.md) \| [Previous (6.2 Customizing Iteration)](02_Customizing_iteration.md) \| [Next (6.4 Generator Expressions)](04_More_generators.md)
+# 9.3 [Contents](../Contents.md) \| [Previous (6.2 Customizing Iteration)](02_Customizing_iteration.md) \| [Next (6.4 Generator Expressions)](04_More_generators.md)
 
 # 6.3 Producers, Consumers and Pipelines
 
@@ -106,7 +106,7 @@ You will notice that data incrementally flows through the different functions.
 For this exercise the `stocksim.py` program should still be running in the background.
 You’re going to use the `follow()` function you wrote in the previous exercise.
 
-### Ejercicio 10.8: Setting up a simple pipeline
+### Ejercicio 9.8: Setting up a simple pipeline
 Let's see the pipelining idea in action.  Write the following
 function:
 
@@ -136,7 +136,7 @@ to it as an argument.  Now, try this:
 It might take awhile for output to appear, but eventually you
 should see some lines containing data for IBM.
 
-### Ejercicio 10.9: Setting up a more complex pipeline
+### Ejercicio 9.9: Setting up a more complex pipeline
 Take the pipelining idea a few steps further by performing
 more actions.
 
@@ -159,7 +159,7 @@ Well, that's interesting.  What you're seeing here is that the output of the
 `follow()` function has been piped into the `csv.reader()` function and we're
 now getting a sequence of split rows.
 
-### Ejercicio 10.10: Making more pipeline components
+### Ejercicio 9.10: Making more pipeline components
 Let's extend the whole idea into a larger pipeline.  In a separate file `ticker.py`,
 start by creating a function that reads a CSV file as you did above:
 
@@ -239,7 +239,7 @@ Run your program again.  You should now a stream of dictionaries like this:
 ...
 ```
 
-### Ejercicio 10.11: Filtering data
+### Ejercicio 9.11: Filtering data
 Write a function that filters data.  For example:
 
 ```python
@@ -263,7 +263,7 @@ for row in rows:
     print(row)
 ```
 
-### Ejercicio 10.12: Putting it all together
+### Ejercicio 9.12: Putting it all together
 In the `ticker.py` program, write a function `ticker(portfile, logfile, fmt)`
 that creates a real-time stock ticker from a given portfolio, logfile,
 and table format.  For example::

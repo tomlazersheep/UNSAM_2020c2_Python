@@ -1,6 +1,6 @@
 [Contenidos](../Contenidos.md) \| [Anterior (3 [Contents](../Contents.md) \| [Previous (6.2 Customizing Iteration)](02_Customizing_iteration.md) \| [Next (6.4 Generator Expressions)](04_More_generators.md))](04_Producers_consumers.md)
 
-# 10.4 [Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md)
+# 9.4 [Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md)
 
 # 6.4 More Generators
 
@@ -109,7 +109,7 @@ More information at [Generator Tricks for Systems Programmers](http://www.dabeaz
 In the previous exercises, you wrote some code that followed lines being written to a log file and parsed them into a sequence of rows.
 This exercise continues to build upon that.  Make sure the `Data/stocksim.py` is still running.
 
-### Ejercicio 10.13: Generator Expressions
+### Ejercicio 9.13: Generator Expressions
 Generator expressions are a generator version of a list comprehension.
 For example:
 
@@ -138,7 +138,7 @@ Thus, if you try another for-loop, you get nothing:
 >>>
 ```
 
-### Ejercicio 10.14: Generator Expressions in Function Arguments
+### Ejercicio 9.14: Generator Expressions in Function Arguments
 Generator expressions are sometimes placed into function arguments.
 It looks a little weird at first, but try this experiment:
 
@@ -157,7 +157,7 @@ In your `portfolio.py` file, you performed a few calculations
 involving list comprehensions.  Try replacing these with
 generator expressions.
 
-### Ejercicio 10.15: Code simplification
+### Ejercicio 9.15: Code simplification
 Generators expressions are often a useful replacement for
 small generator functions.  For example, instead of writing a
 function like this:

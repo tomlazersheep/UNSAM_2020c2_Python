@@ -1,6 +1,6 @@
-[Contenidos](../Contenidos.md) \| [Anterior (11 Recursión)](../11_Recursion/00_Resumen.md) \| [Próximo (13 Optativos)](../13_Optativos/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (10 Recursión)](../10_Recursion/00_Resumen.md) \| [Próximo (12 Optativos)](../12_Optativos/00_Resumen.md)
 
-# 12. Ordenamiento
+# 11. Ordenamiento
 **Esta clase está en preparación.**
 **El material sufrirá cambios hasta el miércoles 28/10, cuando daremos inicio a estos temas en el curso.**
 
@@ -11,8 +11,9 @@ Ordenar una lista de números es una de las tareas fundamentales que realiza un 
 
 
 
-* [12.1 Ordenamientos sencillos de listas](01_Ordenamiento_sencillo.md)
-* [12.2 Ordenamiento mergesort](02_Divide_and_Conquer.md)
+* [11.1 Ordenamientos sencillos de listas](01_Ordenamiento_sencillo.md)
+* [11.2 Divide y reinarás](02_Divide_and_Conquer.md)
+* [11.3 Cierre de la clase de Ordenamiento](03_Cierre.md)
 
 
-[Contenidos](../Contenidos.md) \| [Anterior (11 Recursión)](../11_Recursion/00_Resumen.md) \| [Próximo (13 Optativos)](../13_Optativos/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (10 Recursión)](../10_Recursion/00_Resumen.md) \| [Próximo (12 Optativos)](../12_Optativos/00_Resumen.md)
