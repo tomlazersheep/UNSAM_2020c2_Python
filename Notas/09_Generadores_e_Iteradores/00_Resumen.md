@@ -1,24 +1,21 @@
-[Contenidos](../Contenidos.md) \| [Anterior (8 Clases y objetos)](../08_Clases_y_Objetos/00_Resumen.md) \| [Próximo (10 Recursión)](../10_Recursion/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (8 Clases y objetos)](../08_Clases_y_Objetos/00_Resumen.md) \| [Próximo (10 Recursión y regresión)](../10_Recursion/00_Resumen.md)
 
 # 9. Generadores e iteradores
-**Esta clase está en preparación.**
-**El material sufrirá cambios hasta el miércoles 14/10, cuando daremos inicio a estos temas en el curso.**
+Programar es básicamente escribir condicionales, ciclos y asignaciones de variables. Aunque no de cualquier forma.
 
-Iteration (the `for`-loop) is one of the most common programming
-patterns in Python.  Programs do a lot of iteration to process lists,
-read files, query databases, and more.  One of the most powerful
-features of Python is the ability to customize and redefine iteration
-in the form of a so-called "generator function."  This section
-introduces this topic.  By the end, you'll write some programs that
-process some real-time streaming data in an interesting way.
+Los ciclos, ya sean ciclos `while` o iteraciones `for` son una de las estructuras más ubicuas en cualquier lenguaje. Los programas hacen muchas iteraciones para procesar listas, leer archivos, buscar en bases de datos y demás. 
+
+Una de las características más poderosas de Python es la capacidad de redefinir la iteración mediante las llamadas "funciones generadoras". En esta sección veremos de que se trata ésto. Hacia el final vas a escribir programas que procesan datos en tiempo real, a medida que son generados. 
+
+Terminamos la clase con un ejercicio optativo que combina dos temas importantes: objetos y simulaciones. El ejercicio optativo propone simular en el espacio y tiempo la dinámica predador-presa utilizando para esto programación orientada a objetos.
 
 
+* [9.1 El protocolo de iteración](01_protocolo_Iteracion.md)
+* [9.2 Iteración a medida](02_iteracion_a_medida.md)
+* [9.3 Productores, consumidores y cañerías.](03_Producers_consumers.md)
+* [9.4 Más sobre generadores](04_Mas_generadores.md)
+* [9.5 Predador Presa](05_PredadorPresa.md)
+* [9.6 Cierre de la novena clase](06_Cierre.md)
 
 
-* [9.1 [Contents](../Contents.md) \| [Previous (5.2 Encapsulation)](../05_Object_model/02_Classes_encapsulation.md) \| [Next (6.2 Customizing Iteration)](02_Customizing_iteration.md)](02_protocolo_Iteracion.md)
-* [9.2 [Contents](../Contents.md) \| [Previous (6.1 Iteration Protocol)](01_Iteration_protocol.md) \| [Next (6.3 Producer/Consumer)](03_Producers_consumers.md)](03_iteracion_a_medida.md)
-* [9.3 [Contents](../Contents.md) \| [Previous (6.2 Customizing Iteration)](02_Customizing_iteration.md) \| [Next (6.4 Generator Expressions)](04_More_generators.md)](04_Producers_consumers.md)
-* [9.4 [Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md)](05_Mos_generadores.md)
-
-
-[Contenidos](../Contenidos.md) \| [Anterior (8 Clases y objetos)](../08_Clases_y_Objetos/00_Resumen.md) \| [Próximo (10 Recursión)](../10_Recursion/00_Resumen.md)
+[Contenidos](../Contenidos.md) \| [Anterior (8 Clases y objetos)](../08_Clases_y_Objetos/00_Resumen.md) \| [Próximo (10 Recursión y regresión)](../10_Recursion/00_Resumen.md)

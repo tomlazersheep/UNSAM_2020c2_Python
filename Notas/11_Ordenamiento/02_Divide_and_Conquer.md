@@ -1,4 +1,4 @@
-[Contenidos](../Contenidos.md) \| [Anterior (1 Ordenamientos sencillos de listas)](01_Ordenamiento_sencillo.md) \| [Próximo (3 Cierre de la clase de Ordenamiento)](03_Cierre.md)
+[Contenidos](../Contenidos.md) \| [Anterior (1 Ordenamientos sencillos de listas)](01_Ordenamiento_sencillo.md) \| [Próximo (3 Algoritmos de clasificación supervisada)](03_introduccion_al_AA.md)
 
 # 11.2 Divide y reinarás
 
@@ -7,11 +7,11 @@ iterativos cuyo tiempo de ejecución era cuadrático.
 
 Veremos ahora el **merge sort** que es un algoritmo un poco más complejo conceptualmente pero menos complejo computacionalmente. El algoritmo está basado en una idea muy fecunda en el diseño de algoritmos eficientes que se denomina **divide y reinarás** (ó _divide and conquer_ en inglés). 
 
-Divide y reinarás es un paradigma de diseño de algoritmos recursivos que trabaja partiendo (dividiendo) el problema original en subproblemas del mismo tipo pero más sencillos de resolver. Las soluciones de estos subproblemas luego se combinan para obtner una solución del problema original. 
+Divide y reinarás es un paradigma de diseño de algoritmos recursivos que trabaja partiendo (dividiendo) el problema original en subproblemas del mismo tipo pero más sencillos de resolver. Las soluciones de estos subproblemas luego se combinan para obtener una solución del problema original. 
 
 La correctitud de los algoritmos de este tipo suele probarse utilizando la inducción matemática y el cálculo de su complejidad involucra la resolución de ecuaciones de recurrencia cuyos detalles escapan el alcance de este curso.
 
-## El algoritmo *merge sort* (u odenamiento por mezcla)
+## El algoritmo *merge sort* (u ordenamiento por mezcla)
 
 ![con colores](https://img.devrant.com/devrant/rant/r_950434_EjPWY.gif)
 
@@ -75,26 +75,23 @@ El código resultante del diseño de ambas funciones puede verse a continuación
 ```python
 import random
 
-def al_azar (N):
-    return random.sample(range(0, N), N)
-
-
 def merge_sort(lista):
     """Ordena lista mediante el método merge sort.
        Pre: lista debe contener elementos comparables.
        Devuelve: una nueva lista ordenada."""
     if len(lista) < 2:
-        return lista
-    medio = len(lista) // 2
-    izq = merge_sort(lista[:medio])
-    der = merge_sort(lista[medio:])
-    return merge(izq, der)
+        lista_nueva = lista
+    else:
+        medio = len(lista) // 2
+        izq = merge_sort(lista[:medio])
+        der = merge_sort(lista[medio:])
+        lista_nueva = merge(izq, der)
+    return lista_nueva
 
 def merge(lista1, lista2):
     """Intercala los elementos de lista1 y lista2 de forma ordenada.
        Pre: lista1 y lista2 deben estar ordenadas.
        Devuelve: una lista con los elementos de lista1 y lista2."""
-
     i, j = 0, 0
     resultado = []
 
@@ -111,10 +108,6 @@ def merge(lista1, lista2):
     resultado += lista2[j:]
 
     return resultado
-
-l=al_azar(30)
-print(l)
-print(merge_sort(l))
 ```
 
 El método **divide y reinarás** que hemos usado para resolver el problema de ordenar una lista puede aplicarse también en otras situaciones. Hace falta que sea posible resolver el problema partiéndolo en varios subproblemas de tamaño menor, resolver cada uno de esos subproblemas por separado aplicando
@@ -126,7 +119,19 @@ dos sublistas ordenadas).
 Como siempre sucede con las soluciones recursivas, debemos encontrar un caso
 base en el cual no se aplica la llamada recursiva (en nuestro caso: si la lista tiene largo cero o uno, ya está ordenada y no hay nada que hacer). Además debemos asegurar que siempre se alcanza el caso base, y en nuestro caso aseguramos eso porque, si no estamos en el caso base, la lista se divide en mitades decrementando su longitud.
 
-El método **divide y reinarás** es fecundo y ha dado lugar a algoritmos muy eficientes para tareas muy discímiles como multiplicar matrices, calcular la transformada de Fourier o realizar análisis sintácticos (parsear).
+El método **divide y reinarás** es fecundo y ha dado lugar a algoritmos muy eficientes para tareas muy disímiles como multiplicar matrices, calcular la transformada de Fourier o realizar análisis sintácticos (parsear).
+
+### Ejemplo: Árbol de recursión
+
+Para representar gráficamente las llamadas recursivas de la función `merge_sort()` podemos hacer un árbol similar al que mostramos en la
+[Sección 10.1](../10_Recursion/01_Recursion.md#un-ejemplo-de-recursión-poco-eficiente) para la sucesión de Fibonacci. Esta vez, como queremos mostrar no sólo las llamadas sino también lo que devuelve cada llamada, espejaremos el árbol obteniendo un grafo.
+
+Acá mostramos el árbol de recursión de `merge_sort([3, 1, 0, 4, 2])`.
+
+<p align="center">
+<img src="./arbol_recursion.jpg" width="300">
+</p>
+
 
 ### ¿Cuánto cuesta el *Merge sort*?
 
@@ -185,20 +190,147 @@ De esta manera se logra un tiempo proporcional a `N * log2(N)`.
 
 ## Ejercicios:
 
-### Ejercicio 11.5: 
-Mostrar los pasos del ordenamiento de la lista: `[6, 0, 3, 2, 5, 7, 4, 1]` con los métodos de inserción y con merge sort. ¿Cuáles son las principales diferencias entre los métodos? ¿Cuál usarías en qué casos?
-
 ### Ejercicio 11.6: 
-Ordená la lista `[6, 0, 3, 2, 5, 7, 4, 1]` usando el método merge sort. Dibujá el árbol de recursión explicando las llamadas que se hacen en cada paso, y el orden en el que se realizan.
+Ordená la lista `[6, 0, 3, 2, 5, 7, 4, 1]` usando el método merge sort. Dibujá el árbol de recursión explicando las llamadas que se hacen en cada paso, y el orden en el que se realizan, como mostramos más arriba para la lista `[3, 1, 0, 4, 2]`.
 
 ### Ejercicio 11.7: 
-Rehace el último ejercicio de la sección anterior ([Ejercicio 11.4](../11_Ordenamiento/01_Ordenamiento_sencillo.md#ejercicio-114)) incorporando el mergesort a la comparación y al gráfico. Describí con tus palabras qué observas.
+Modificá la función `merge_sort` para que también devuelva la cantidad de comparaciones hechas. Rehacé el último ejercicio de la sección anterior ([Ejercicio 11.5](../11_Ordenamiento/01_Ordenamiento_sencillo.md#ejercicio-115-comparar-métodos-gráficamente)) incorporando el merge sort a la comparación y al gráfico. Describí con tus palabras qué observas.
+
+Guardá el archivo `comparaciones_ordenamiento.py` con estas modificaciones, para entregarlo.
+
+## El módulo `timeit`
+
+Hay casos en que contar la cantidad de operaciones que un algoritmo realiza se vuelve muy engorroso. Una alternativa simple aunque menos exacta es medir su tiempo de ejecución para problemas de distintos tamaños y estimar el orden del algoritmo a partir del cambio en el tiempo de ejecución al cambiar el tamaño del problema. 
+
+Existe un [módulo llamado `timeit`](https://docs.python.org/3/library/timeit.html) que permite medir tiempos de ejecución de código Python.
+
+El comando `timeit()` del modulo `timeit` devuelve, en segundos, el tiempo de ejecución total para el comando y número de repeticiones especificadas. El código a ejecutar y la cantidad de ejecuciones se pasan como parámetros. En esta sección, vamos a usarlo para comparar algoritmos de ordenamiento.
+
+En el siguiente ejemplo se le pide a Python una demora de 1 segundo (sleep(1)) y se le pide a timeit() que devuelva el tiempo de ejecución de ese comando, ejecutado una sola vez). Probálo varias veces:
+
+```python
+In [1]: import time
+In [2]: import timeit as tt
+In [3]: tt.timeit('time.sleep(1)',number = 1)
+Out[3]: 1.0010360410087742
+```
+
+Notarás que el tiempo de ejecución está muy cerca del esperado (1 segundo), pero no es exactamente ese valor y además hay cierta variacion entre repeticiones. 
+
+Ahora evaluemos la siguiente expresión, que concatena en un string los primeros 100 números enteros. Ejecutala por lo menos diez veces y mirá como varía la salida:
+
+```python
+In [4]: tt.timeit('"-".join(str(n) for n in range(100))', number = 1)
+Out[4]: 6.670000296551734e-05
+```
+
+Si medimos un proceso que tarda poco tiempo como en el último ejemplo, obtendremos resultados con una variabilidad de magnitud similar a la duración del proceso. Si queremos comparar duraciones relativas es mejor medir procesos largos o, si se trata de un proceso corto, repetirlo muchas veces. Usando `timeit()` podemos hacer esto cambiando el parametro `number`.
+
+Probá lo siguiente:
+
+```python
+In [5]: tt.timeit('"-".join(str(n) for n in range(100))', number = 10000)
+Out[5]: 0.3018611848820001
+```
+
+Ahora comparemos la duración de ese código python con la duración de otras expresiones que dan el mismo resultado. Ejecutá cada una varias veces:
+
+```python
+In [6]: tt.timeit('"-".join(str(n) for n in range(100))', number = 10000)
+Out[6]: 0.3018611848820001
+In [7]: tt.timeit('"-".join([str(n) for n in range(100)])', number = 10000)
+Out[7]: 0.2727368790656328
+In [8]: tt.timeit('"-".join(map(str, range(100)))', number = 10000)
+Out[8]: 0.23702679807320237
+```
+
+### Ejemplo: evaluar el método de selección con `timeit`.
+
+Queremos evaluar cuánto tarda del método de selección dependiendo de la longitud de la lista de entrada.
+
+Para eso, primero generamos listas de longitudes entre 1 y 256.
+
+```python
+listas = []
+for N in range(1, 256):
+    listas.append(generar_lista(N))
+```
+
+Luego, definimos una función `experimento_timeit_seleccion(listas, num)` que realiza un experimento usando timeit para evaluar el método de selección (repitiendo `num` veces) con las listas pasadas como entrada, y devuelve los tiempos de ejecución para cada lista en un vector.
+
+```python
+def experimento_timeit_seleccion(listas, num):
+    """
+    Realiza un experimento usando timeit para evaluar el método
+    de selección para ordenamiento de listas
+    con las listas pasadas como entrada
+    y devuelve los tiempos de ejecución para cada lista
+    en un vector.
+    El parámetro 'listas' debe ser una lista de listas.
+    El parámetro 'num' indica la cantidad de repeticiones a ejecutar el método para cada lista.
+    """
+    tiempos_seleccion = []
+    
+    global lista
+    
+    for lista in listas:
+     
+        # evalúo el método de selección
+        # en una copia nueva para cada iteración
+        tiempo_seleccion = tt.timeit('ord_seleccion(lista.copy())', number = num, globals = globals())
+        
+        # guardo el resultado
+        tiempos_seleccion.append(tiempo_seleccion)
+        
+    # paso los tiempos a arrays
+    tiempos_seleccion = np.array(tiempos_seleccion)
+    
+    return tiempos_seleccion
+```
+
+El parámetro `globals = globals()` permite a `timeit()` acceder a las variables y funciones definidas en el namespace global en que se está ejecutando. El comando `global lista` hace que la variable `lista` que va recorriendo la lista de listas, sea _global_ y por lo tanto accesible a `timeit()`.
+
+Y ahora realizamos el experimento y lo graficamos.
+
+```python
+tiempos_seleccion = experimento_timeit_seleccion(listas, 100)
+plt.plot(tiempos_seleccion)
+```
+
+![experimento_timeit_seleccion](./experimento_timeit_seleccion.jpg)
 
 ### Ejercicio 11.8: 
-Escribí una función `merge3sort` que funcione igual que el merge sort pero
-en lugar de dividir la lista de entrada en dos partes, la divida en tres partes. Debrás escribir la función `merge3(lista1, lista2, lista3)`. ¿Cómo te parece que se va a comportar este método con respecto al merge sort original?
+La idea de este ejercicio es, nuevamente, comparar los algoritmos de ordenamiento que vimos hasta ahora pero usando `timeit()` en lugar de contando a mano la cantidad de operaciones.
+
++ Juntá en el archivo `time_ordenamiento.py` los métodos de búsqueda del [Ejercicio 11.7](../11_Ordenamiento/02_Divide_and_Conquer.md#ejercicio-117).
+
++ Antes de empezar el experimento, eliminá de las funciones a medir todo código no esencial, en particular los prints para debug. Consumen tiempo y no son parte del algoritmo. También eliminá las cuentas de comparaciones, que ahora no son necesarias.
+
++ Escribí un experimento que, tal como hiciste en el [Ejercicio 11.5](../11_Ordenamiento/01_Ordenamiento_sencillo.md#ejercicio-115-comparar-métodos-gráficamente),
+para `N` entre 1 y 256 genere una lista de largo `N` con números enteros del 1 al 1000, calcule el tiempo que tarda cada método en ordenar la lista y guarde estos resultados en vectores de largo 256.
+
++ En este caso, vas a tener que generar y guardar todas las listas a ser utilizadas antes de correr el experimento, para poder usar las mismas para evaluar cada método. Definí para eso una función `generar_listas(Nmax)` que genere una lista de listas, una de cada longitud entre 1 y `Nmax`, con valores aleatorios entre 1 y 1000.
+
++ Asegurate de evaluar todos los métodos de ordenamiento con las mismas listas (siempre usá copias para no reordenar listas ya ordenadas) y guardar esta información para poder mostrarla o usarla.
+
++ Graficá los datos de tiempos de ejecución en función de longitudes de la lista. ¿Coinciden las curvas con lo que habías predicho estimando el número de operaciones?
+
++ Guardá el archivo `time_ordenamiento.py` para entregarlo.
+
+
+### Ejercicio 11.9: 
+Opcional: Escribí una función `merge3sort` que funcione igual que el merge sort pero en lugar de dividir la lista de entrada en dos partes, la divida en tres partes. Deberás escribir la función `merge3sort(lista1, lista2, lista3)`.
+
+Probá tu función en las siguientes listas:
+
+```python
+unalista = [1, 4, 3, 1, 7, 5]
+otralista = [7, 6, 5, 4, 3, 2, 1, 0]
+```
+
+¿Cómo te parece que se va a comportar este método con respecto al merge sort original? Agregá este nuevo método a la comparación del ejercicio anterior.
 
 
 
-[Contenidos](../Contenidos.md) \| [Anterior (1 Ordenamientos sencillos de listas)](01_Ordenamiento_sencillo.md) \| [Próximo (3 Cierre de la clase de Ordenamiento)](03_Cierre.md)
+[Contenidos](../Contenidos.md) \| [Anterior (1 Ordenamientos sencillos de listas)](01_Ordenamiento_sencillo.md) \| [Próximo (3 Algoritmos de clasificación supervisada)](03_introduccion_al_AA.md)
 

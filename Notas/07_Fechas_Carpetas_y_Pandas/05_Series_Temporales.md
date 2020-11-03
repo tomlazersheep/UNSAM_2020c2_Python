@@ -166,6 +166,61 @@ Buscá los valores de `delta_t` (es un número entero, son pasos) y `delta_h` (p
 
 Guardá tu código en el archivo `mareas_a_mano.py` para entregar.
 
+### Correlación con desplazamientos
+
+El siguiente código calcula y grafica el [coeficiente de correlación *r* de Pearson](https://es.wikipedia.org/wiki/Coeficiente_de_correlaci%C3%B3n_de_Pearson) entre la serie de alturas en Buenos Aires y la de San Fernando desplazada temporalmente.
+
+```python
+import numpy as np
+import pandas as pd
+from scipy.stats import pearsonr
+import matplotlib.pyplot as plt
+
+# Levanto las dos series
+df=pd.read_csv('Data/OBS_SHN_SF-BA.csv',index_col=['Time'],parse_dates=True)
+# Me quedo con un fregmento
+dh=df['10-01-2014':].copy()
+
+# Selecciono los intervalos que voy a usar para desplazar SF
+shifts = np.arange(-12,13)
+# Genero un vector donde guardar los coeficientes de correlacion para cada deslpazamiento
+corrs = np.zeros(shifts.shape)
+for i, sh in enumerate(shifts):
+    #guardo el coeficiente de correlación r entre de SF desplazada con BA original.
+    corrs[i] = pearsonr(dh['H_SF'].shift(sh)[12:-12],dh['H_BA'][12:-12])[0]
+# ploteo los resultados   
+plt.plot(shifts, corrs)
+```
+
+### Ejercicio 7.11: Interpolación
+Este ejemplo muestra una manera de interplolar la serie de manera de poder usar desplazamientos menores a una hora.
+
+```python
+# Cada cuarto de hora
+df=pd.read_csv('Data/OBS_SHN_SF-BA.csv',index_col=['Time'],parse_dates=True)
+dh =df['10-01-2014':].copy() #ultimo trimestre
+freq_horaria = 4 # 4 para 15min, 60 para 1min
+cant_horas = 24
+N = cant_horas * freq_horaria
+#resampleo cada tantos minutos
+dh = dh.resample(f'{int(60/freq_horaria)}T').mean()
+#rellenos los NaNs suavemente
+dh =dh.interpolate(method='quadratic')
+# genero vector de desplazamientos (enteros)
+ishifts = np.arange(-N,N+1)
+# y su desplamiento horario asociado
+shifts=ishifts/freq_horaria
+# finalmente calculo las correlaciones correspondientes
+corrs = np.zeros(shifts.shape)
+for i, sh in enumerate(ishifts):
+    corrs[i] = pearsonr(dh['H_SF'].shift(sh)[N:-N],dh['H_BA'][N:-N])[0]
+# y grafico
+plt.plot(shifts, corrs)
+```
+
+El comando `np.argmax(corrs)` se puede usar para devolver la coordenada de la máxima correlación. Esa posición del vector `shifts` indicará a cuántas horas corresponde ese desplazamiento. Si lo corremos con esta interpolación cada 15 minutos propuesta en el código, obtendremos que la onda tarda una hora en llegar a San Fernando. Usando una interpolación más fina, ¿podés estimar el desfazaje en minutos? A nosotros nos dio 57 minutos.
+
+
 ## Parte optativa
 
 En lo que sigue vamos a usar herramientas matemáticas para hacer un análisis similar al que hicimos recién de manera *artesanal*. Para una onda sinusoidal, el desplazamiento horizontal corresponde a una diferencia de fase y el desplazamiento vertical es simplemente una constante aditiva. Vamos a descomponer la serie de alturas observadas del agua por medio de la transformada de Fourier.
@@ -403,7 +458,7 @@ Por lo tanto, el retardo de la onda de mareas puede calcularse usando
 (ang_ba - ang_sf) * ang2h
 ```
 
-### Ejercicio 7.11: Desfasajes
+### Ejercicio 7.12: Desfasajes
 En la Pregunta 1 estimaste el desfasaje vertical entre los ceros de escala de los puertos analizados.
 Ahora tenés que estimar el desfasaje temporal de las ondas de marea entre ambos puertos.
 ¿A cuántos minutos corresponde aproximadamente el tiempo que tarda la onda de mareas en llegar del puerto de Buenos Aires al de San Fernando?
@@ -412,14 +467,14 @@ Usá estos datos para volver a hacer el gráfico del [Ejercicio 7.10](../07_Fech
 
 ## Un poco más avanzados:
 
-### Ejercicio 7.12: Otros puertos
+### Ejercicio 7.13: Otros puertos
 Usando el [archivo con datos del Puerto de Zárate](./OBS_Zarate_2013A.csv), estimá el tiempo (expresado en horas y minutos) que le toma a la onda de marea llegar de Buenos Aires a Zárate.
 
 Obviamente la onda llega atenuada a Zárate. ¿Cómo se refleja esta atenuación en la transformada? ¿Podés cuantificar esta atenuación?
 
 Guardá lo que hayas hecho hasta acá en el archivo `mareas_fft.py` para entregar.
 
-### Ejercicio 7.13: Otros períodos
+### Ejercicio 7.14: Otros períodos
 El primer análisis se realizó con el primer semestre del 2014 ya que no tiene ni datos faltantes ni outliers. Este ejercicio es una invitación a explorar estos problemas tan frecuentes.
 
 * ¿Se puede comparar Zárate con San Fernando usando todos los datso de Zárate? ¿Cómo se comporta San Fernando en esas fechas?

@@ -7,7 +7,7 @@ En este ejercicio vamos a trabajar con una imagen satelital obtenida por sensore
 ### Ejercicio 8.14: Optativo de teledetección
 **Autora: [Mariela Rajngewerc](https://github.com/marielaraj/)**
 
-La imagen original fue bajada de la página https://earthexplorer.gov. En esa página se pueden bajar imágenes con distinto nivel de pre-procesamiento. Para este ejercicio bajamos una imagen de nivel de procesamiento 2, esto quiere decir que los valores de los pixeles representan la reflectancia en superficie en distintas longitudes de onda. [Acá](https://www.usgs.gov/media/files/landsat-8-collection-1-land-surface-reflectance-code-product-guide) pueden encontrar el manual de estas imagenes donde les detallan la descripción tanto de los nombres de lor archivos como de los preprocesamiento que tienen realizados. 
+La imagen original fue bajada de la página del [earthexplorer](https://earthexplorer.usgs.gov/). En esa página se pueden bajar imágenes con distinto nivel de pre-procesamiento. Para este ejercicio bajamos una imagen de nivel de procesamiento 2, esto quiere decir que los valores de los pixeles representan la reflectancia en superficie en distintas longitudes de onda. [Acá](https://www.usgs.gov/media/files/landsat-8-collection-1-land-surface-reflectance-code-product-guide) pueden encontrar el manual de estas imagenes donde les detallan la descripción tanto de los nombres de lor archivos como de los preprocesamiento que tienen realizados. 
 
 Para este ejercicio hemos realizado un clip de cada una de las bandas originales de la imagen y ya multiplicamos a cada una de las bandas por el factor de escala indicado en el manual (0,0001).
 
@@ -36,10 +36,16 @@ a) Usá [numpy](https://numpy.org/doc/stable/reference/generated/numpy.load.html
 
 _Sugerencia_: Con `plt.hist(banda.flatten(),bins=100)` vas a ver un histograma de los valores en la matriz `banda`. Podés usarlo para guiarte en la búsqueda del rango que tiene sentido usar como vmin y vmax.
 
+b) Probá usando percentiles para fijar el rango. Algo como 
 
-b) Escribí una función `crear_img_png(carpeta, banda)` que, dada una carpeta y un número de banda, muestre la imagen de dicha banda y la guarde en formato .png. Asegurate de incorporar un `colorbar` al lado de la imágen.
+```python
+vmin = np.percentile(data.flatten(), q)
+vmax = np.percentile(data.flatten(), 100-q)
+```
 
-Tené en cuenta lo que hiciste en el punto a) para que se vea adecadamente.
+c) Escribí una función `crear_img_png(carpeta, banda)` que, dada una carpeta y un número de banda, muestre la imagen de dicha banda y la guarde en formato .png. Asegurate de incorporar un `colorbar` al lado de la imágen.
+
+Tené en cuenta lo que hiciste en los puntos anteriores para que se vea adecuadamente.
 
 
 ### Ejercicio 8.16: Histogramas
@@ -48,16 +54,16 @@ Escribí ahora otra función, llamada `crear_hist_png(carpeta, banda, bins)` que
 ### Ejercicio 8.17: Máscaras binarias
 a) Usá las funciones `crear_img_png` y `crear_hist_png` que hiciste en los puntos anteriores para generar las imágenes e histogramas de cada banda.
 
-b) ¿Qué banda o bandas parecieran tener histogramas bimodales, mostrando diferentes tipos de pixels? Elijí una de esas bandas y observando el histograma, seleccioná un umbral que te permita distinguir los dos tipos de píxels. Por ejemplo, podés crear una matriz del mismo tamaño de la banda donde a cada píxel le corresponda un 1 o un 0, 1 si está por arriba del umbral y 0 si no.
+b) ¿Qué banda o bandas parecieran tener histogramas bimodales, mostrando diferentes tipos de pixels? Elegí una de esas bandas y, observando el histograma, seleccioná un umbral que te permita distinguir los dos tipos de píxels. Por ejemplo, podés crear una matriz del mismo tamaño de la banda donde a cada píxel le corresponda un 1 o un 0, 1 si está por arriba del umbral y 0 si no.
 
 Graficá la imágen binaria así obtenida. ¿A qué corresponden los dos tipos de píxeles que pudiste distinguir tan fácilmente?
 
 ### Ejercicio 8.18: Clasificación manual
 En este ejercicio vamos a trabajar con un índice: el Índice de Vegetación de Diferencia Normalizada, también conocido como [NDVI](https://es.wikipedia.org/wiki/%C3%8Dndice_de_vegetaci%C3%B3n_de_diferencia_normalizada) por sus siglas en inglés. Este índice, basado en la intensidad de la radiación de dos bandas  del espectro electromagnético que interactúan particularmente con la vegetación, aporta información sobre la cantidad, estado y desarrollo de la misma.
 
-Para calcular el NDVI se utilizan las bandas espectrales Roja e Infrarroja, el cálculo se hace mediante la siguiente fórmula:
+Para calcular el NDVI se utilizan las bandas espectrales Roja e Infrarroja y el cálculo se hace mediante la siguiente fórmula:
 
-`(INFRARROJO_CERCANO - ROJO) / {INFRARROJO_CERCANO + ROJO}`
+`(INFRARROJO_CERCANO - ROJO) / (INFRARROJO_CERCANO + ROJO)`
 
 a) Calcular el NDVI en una nueva matriz.
 
@@ -87,7 +93,7 @@ e) Ponele una leyenda que indique el nombre de cada clase con el color asignado,
 Si llegaste hasta acá, no te olvides de guardar tu trabajo en el archivo `NDVI.py` y entregarlo. A continuación, un ejercicio que usa herramientas un poco más avanzadas de aprendizaje automático.
 
 ### Ejercicio 8.19: Clasificación automática
-En el ejercicio anterior definimos a mano los umbrales que distinguen las clases. Es posible hacer esto de forma automática. Para eso se usan técnicas de clustering. El siguiente código muestra un ejemplo con un clasificador muy sencillo: `kmeans`. Este clasificador viene en la biblioteca [sklearn](https://scikit-learn.org/stable/) que es una biblioteca dedicada al aprendizaje automático en python.
+En el ejercicio anterior definimos a mano los umbrales que distinguen las clases. Es posible hacer esto de forma automática. Para eso se usan técnicas de clustering. El siguiente código muestra un ejemplo con un clasificador muy sencillo: `kmeans`. Este clasificador está ya implementado en la biblioteca [sklearn](https://scikit-learn.org/stable/) que es una biblioteca dedicada al aprendizaje automático en python (probablemente la más usada para esto).
 
 ```python
 # filtro datos ruidosos o que puedan traer problemas. 
@@ -114,6 +120,36 @@ plt.imshow(etiquetas.reshape(ndvi.shape))
 Probá ajustando el número de clusters (`n_clusters=5`, por ejemplo) y corriendo nuevamente el modelo. Ponele colores diferentes a las diferentes clases obtenidas.
 
 Si tarda mucho podés trabajar con un pedazo de la imágen. Por ejemplo si hacés `ndvi_clip = ndvi[1000:2000,2000:3000]` te quedás con un cuadradito que es un octavo de la imagen original y podés usarlo para probar cosas rápido. Si te convencen los resultados podés correr tu algoritmo sobre la imágen completa.
+
+### Sugerencia: Código para colorbars
+
+Revisar este código para el cmap:
+
+```python
+from matplotlib import colors
+# Creo colores
+cmap = colors.ListedColormap(['black', 'y',
+                              'yellowgreen', 'green', 'darkgreen'])
+# Defino los limites de cada color
+limites = [0, 1, 2, 3, 4]
+norm = colors.BoundaryNorm(limites, cmap.N)
+# Genero el grafico con colores
+plt.imshow(clases_ndvi, cmap=cmap, norm=norm)
+```
+
+
+Y este para las leyendas:
+```python
+import matplotlib.patches as mpatches
+# Genero leyenda y grafico con leyenda
+texts = ['Sin vegetacion', 'Area desnuda', 'Vegetacion baja',
+         'Vegetacion moderada', 'Vegetacion densa']
+patches = [mpatches.Patch(color=cmap(i), label="{:s}".format(texts[i]) ) for i in range(len(texts))]
+plt.legend(handles=patches, bbox_to_anchor=(0.2,1.3), loc='center', ncol=1 )
+plt.imshow(clases_ndvi, cmap=cmap, norm=norm)
+plt.show()```
+
+
 
 [Contenidos](../Contenidos.md) \| [Anterior (4 Objetos, pilas y colas)](04_Pilas_Colas.md) \| [Próximo (6 Cierre de la octava clase)](06_Cierre.md)
 

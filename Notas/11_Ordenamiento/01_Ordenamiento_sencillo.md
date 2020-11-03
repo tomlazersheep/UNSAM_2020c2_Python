@@ -3,7 +3,7 @@
 # 11.1 Ordenamientos sencillos de listas
 
 
-El problema del ordenamiento es tan fundamental que, a pesar que Python ya lo hace con su método `sort()` por ejemplo, nos interesa discutirlo. Hay una diversidad de soluciones para ordenar. Vamos a empezar viendo las más sencillas de escribir (que en general suelen ser las más caras).
+El problema del ordenamiento es tan fundamental que, a pesar de que Python ya lo hace con su método `sort()` por ejemplo, nos interesa discutirlo. Hay una diversidad de soluciones para ordenar listas. Vamos a empezar viendo las más sencillas de escribir (que en general suelen ser las más caras).
 
 ## Ordenamiento por selección
 El método de *ordenamiento por selección* se basa en la siguiente idea:
@@ -58,26 +58,26 @@ reduciendo el segmento a analizar.
 La función `buscar_max()` busca el mayor elemento de un segmento de
 la lista y devuelve su posición.
 
-A continuación, algunas una ejecuciones de prueba de ese código:
+A continuación, algunas ejecuciones de prueba de ese código:
 
 ```python
->>> l = [3, 2, -1, 5, 0, 2]
->>> ord_seleccion(l)
+>>> lista = [3, 2, -1, 5, 0, 2]
+>>> ord_seleccion(lista)
 DEBUG:  3 5 [3, 2, -1, 2, 0, 5]
 DEBUG:  0 4 [0, 2, -1, 2, 3, 5]
 DEBUG:  1 3 [0, 2, -1, 2, 3, 5]
 DEBUG:  1 2 [0, -1, 2, 2, 3, 5]
 DEBUG:  0 1 [-1, 0, 2, 2, 3, 5]
->>> l
+>>> lista
 [-1, 0, 2, 2, 3, 5]
->>> l = []
->>> ord_seleccion(l)
+>>> lista = []
+>>> ord_seleccion(lista)
 >>> l = [1]
->>> ord_seleccion(l)
->>> l
+>>> ord_seleccion(lista)
+>>> lista
 [1]
->>> l = [1, 2, 3, 4, 5]
->>> ord_seleccion(l)
+>>> lista = [1, 2, 3, 4, 5]
+>>> ord_seleccion(lista)
 DEBUG:  4 4 [1, 2, 3, 4, 5]
 DEBUG:  3 3 [1, 2, 3, 4, 5]
 DEBUG:  2 2 [1, 2, 3, 4, 5]
@@ -85,7 +85,7 @@ DEBUG:  1 1 [1, 2, 3, 4, 5]
 ```
 
 
-Podés observar que incluso cuando la lista ya está ordenada, se la recorre buscandoc los mayores elementos y ubicándolos en la misma posición en la que se
+Podés observar que incluso cuando la lista ya está ordenada, se la recorre buscando los mayores elementos y ubicándolos en la misma posición en la que se
 encuentran.
 
 ### Invariante en el ordenamiento por selección
@@ -94,8 +94,7 @@ Todo ordenamiento tiene un invariante que permite asegurarse de que cada
 paso que se toma va en la dirección de obtener una lista ordenada.
 
 En el caso del ordenamiento por selección, el invariante es que los
-elementos desde `n + 1` hasta el final de la lista están ordenados y
-son mayores que los elementos de `0` a `n`; es decir
+elementos en las posiciones desde `n + 1` hasta el final de la lista están ordenados y son mayores que los elementos ubicados de `0` a `n`; es decir
 que ya están en su posición definitiva.
 
 ### ¿Cuánto cuesta ordenar por selección?
@@ -111,7 +110,7 @@ pequeña de comparaciones (que no depende de `N`). Por lo tanto tenemos que
 
 O sea que ordenar por selección una lista de tamaño `N` insume tiempo del
 orden de `N^2`.  Como ya mencionamos, este tiempo es independiente de si la
-lista estaba previamente ordenda o no.
+lista estaba previamente ordenada o no.
 
 En cuanto al espacio utilizado, sólo se tiene en memoria la
 lista que se desea ordenar y algunas variables de tamaño 1.
@@ -126,7 +125,7 @@ El método de *ordenamiento por inserción* se basa en la siguiente idea:
 ![Ejemplo_insercion](./insercion.png)
 
 Una posible implementación en Python de este algoritmo se incluye en el
-Código~\ref{ord_insercion*.
+siguiente código:
 
 ```python
 def ord_insercion(lista):
@@ -174,35 +173,35 @@ insertar reemplaza al valor que se encontraba allí anteriormente.
 En las siguientes ejecuciones puede verse que funciona correctamente.
 
 ```python
->>> l=[3, 2, -1, 5, 0, 2]
->>> ord_insercion(l)
+>>> lista = [3, 2, -1, 5, 0, 2]
+>>> ord_insercion(lista)
 DEBUG:  [2, 3, -1, 5, 0, 2]
 DEBUG:  [-1, 2, 3, 5, 0, 2]
 DEBUG:  [-1, 2, 3, 5, 0, 2]
 DEBUG:  [-1, 0, 2, 3, 5, 2]
 DEBUG:  [-1, 0, 2, 2, 3, 5]
->>> l
+>>> lista
 [-1, 0, 2, 2, 3, 5]
->>> l = []
->>> ord_insercion(l)
->>> l = [1]
->>> ord_insercion(l)
->>> l
+>>> lista = []
+>>> ord_insercion(lista)
+>>> lista = [1]
+>>> ord_insercion(lista)
+>>> lista
 [1]
->>> l=[1, 2, 3, 4, 5, 6]
->>> ord_insercion(l)
+>>> lista = [1, 2, 3, 4, 5, 6]
+>>> ord_insercion(lista)
 DEBUG:  [1, 2, 3, 4, 5, 6]
 DEBUG:  [1, 2, 3, 4, 5, 6]
 DEBUG:  [1, 2, 3, 4, 5, 6]
 DEBUG:  [1, 2, 3, 4, 5, 6]
 DEBUG:  [1, 2, 3, 4, 5, 6]
->>> l
+>>> lista
 [1, 2, 3, 4, 5, 6]
 ```
 
 ### Invariante del ordenamiento por inserción
 
-En el ordenamiento por inserción, en cada paso se considera que los
+En el ordenamiento por inserción, en cada paso se satisface que los
 elementos que se encuentran en el segmento de `0` a `i` están ordenados, de
 manera que agregar un nuevo elemento implica colocarlo en la posición
 correspondiente y el segmento seguirá ordenado.
@@ -277,26 +276,47 @@ El ordenamiento por burbujeo se basa en una idea bastante sencilla. El algoritmo
 
 Como en el primer paso tenemos la garantía de que el mayor elemento quedó al final de la lista, la segunda recorrida puede evitar llegar hasta esa última posición. Así, cada recorrida es más corta que la anterior. En cada recorrida se comparan todos los pares de elementos sucesivos (en el rango correspondiente) y se intercambian si no están ordenados.
 
-Programá una fucnión `ord_burbujeo(lista)` que implemente este método de ordenamiento. ¿Cuánta comparaciones realiza esta función en una lista de largo n?
+Programá una función `ord_burbujeo(lista)` que implemente este método de ordenamiento. ¿Cuántas comparaciones realiza esta función en una lista de largo n?
 
-Si no te sale con estas indicaciones, podés consultar [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja) u otras fuentes sobre ordenamiento por burbujeo. Guardá tu solución en el archivo `burbujeo.py` comentando la complejidad del algoritmo y cómo la calculaste.
+Probá tu código con las siguientes listas.
 
+```python
+lista_1 = [1, 2, -3, 8, 1, 5]
+lista_2 = [1, 2, 3, 4, 5]
+lista_3 = [0, 9, 3, 8, 5, 3, 2, 4]
+lista_4 = [10, 8, 6, 2, -2, -5]
+lista_5 = [2, 5, 1, 0]
+```
 
-### Ejercicio 11.3: 
-Hacé un programa que genere una lista aleatoria de largo N y la ordene con los tres métodos (burbujeo, inserción y selección)
+Guardá tu solución en el archivo `burbujeo.py` comentando la complejidad del algoritmo y cómo la calculaste.
+
+_Extra:_ ¿Podés escribir una versión recursiva de este algoritmo?
+
+### Ejercicio 11.3: ordernar a mano
+Elegí dos listas de las 5 del ejercicio anterior y ordenalas a mano (con papel y lápiz) con los 3 métodos: selección, inserción y burbujeo.
+
+### Ejercicio 11.4: experimento con 3 métodos
+Hacé una función `generar_lista(N)` que genere una lista aleatoria de largo N con números enteros del 1 al 1000 (puede haber repeticiones).
 
 Modificá el código de las tres funciones para que cuenten cuántas comparaciones entre elementos de la lista realiza cada una. Por ejemplo, `ord_seleccion` realiza comparaciones (entre elementos de la lista) sólo cuando llama a `buscar_max(lista, a, b)` y en ese caso realiza `b-a` comparaciones. 
 
-_Cuidado_: usá la misma lista para los tres métodos así la compración es justa.
+Realizá un experimento que genere una lista de largo `N` y la ordene con los tres métodos (burbujeo, inserción y selección).
 
-Para N=10, hacé que tu programa repita 100 veces estos conteos e imprima el promedio de comparaciones realizado por cada método.
+Para N = 10, realizá k = 100 repeticiones del siguiente experimento. Generar una lista de largo `N`, ordenarlas con los tres métodos y guardar la cantidad de operaciones. Al final, debe imprimir el promedio de comparaciones realizado por cada método.
 
-### Ejercicio 11.4: 
-Vamos a tratar de comparar visualmente la cantidad de comparaciones que hacen estos algoritmos para diferentes largos de listas. Hacé un programa que para `N` entre 1 y 256 genere un vector de largo `N` ordenado aleatoriamente como antes, calcule el promedio de comparaciones realizado por cada método y guarde estos resultados en tres vectores de largo 256: `comp_seleccion`, `comp_insercion` y `comp_burbujeo`. 
+_Cuidado_: usá las mismas listas para los tres métodos así la compración es justa.
 
-Graficá estos tres vectores. ¿Cómo dirías que crece la complejidad de estos métodos? 
+
+### Ejercicio 11.5: comparar métodos gráficamente
+Vamos a tratar de comparar visualmente la cantidad de comparaciones que hacen estos algoritmos para diferentes largos de listas. Hacé un programa `comparaciones_ordenamiento.py` que para `N` entre 1 y 256 genere una lista de largo `N` con números enteros del 1 al 1000, calcule la cantidad de comparaciones realizadas por cada método y guarde estos resultados en tres vectores de largo 256: `comparaciones_seleccion`, `comparaciones_insercion` y `comparaciones_burbujeo`. 
+
+Graficá estos tres vectores. Si las curvas se superponen, graficá una de ellas con línea punteada para poder verlas bien. ¿Cómo dirías que crece la complejidad de estos métodos? ¿Para cuáles depende de la lista a ordenar y para cuáles solamente depende del largo de la lista?
+
+Guardá `comparaciones_ordenamiento.py` para seguir trabajando sobre él y para entregarlo.
 
 ¿Se te ocurre un algoritmo de ordenamiento que sea sustancialmente mejor que estos? Ese será el tema de la próxima sección.
+
+_Extra:_ ¿Las curvas de complejidad quedaron suaves? ¿Se te ocurre cómo hacer para suavizarlas?
 
 [Contenidos](../Contenidos.md) \| [Próximo (2 Divide y reinarás)](02_Divide_and_Conquer.md)
 

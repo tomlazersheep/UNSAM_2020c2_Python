@@ -11,22 +11,19 @@ Una de las formas de extender el comportamiento de un programa es definir una in
 
 Otra forma muy interesante es definir clases base, abstractas, que van a ser implementadas luego, por herencia, en sus versiones definitivas. 
 
-La experiencia, ese peine que te regalan cuando ya llegó la calvicie, te va a permitir decidir (quizás taríamente) cuándo es mas conveniente una arquitectura o la otra.
+La experiencia te va a permitir decidir (quizás tardíamente) cuándo es mas conveniente una arquitectura o la otra.
 
-Entregá:
+En fin, para cerrar esta clase, entregá:
 
 * El archivo `informe.py` del [Ejercicio 8.8](../08_Clases_y_Objetos/02_Herencia.md#ejercicio-88-volvamos-a-armar-todo).
 * El archivo `lote.py` del [Ejercicio 8.9](../08_Clases_y_Objetos/03_Métodos_Especiales.md#ejercicio-89-mejor-salida-para-objetos).
 * El archivo `torre_control.py` del [Ejercicio 8.12](../08_Clases_y_Objetos/04_Pilas_Colas.md#ejercicio-812-torre-de-control).
-* El archivo `CangurosBuenos.py` del [Ejercicio 8.11](../08_Clases_y_Objetos/04_Pilas_Colas.md#ejercicio-811-canguros-buenos-y-canguros-malos).
+* El archivo `canguros_buenos.py` del [Ejercicio 8.11](../08_Clases_y_Objetos/04_Pilas_Colas.md#ejercicio-811-canguros-buenos-y-canguros-malos).
 * El archivo `NDVI.py` del [Ejercicio 8.14](../08_Clases_y_Objetos/05_Teledeteccion.md#ejercicio-814-optativo-de-teledetección) (optativo).
- 
 
+Además te pedimos que completes [este formulario](https://docs.google.com/forms/d/13FKe29wNTl7yfVQk4wW6k90vrrEwDlH79b3WUB95DiU) usando tu dirección de mail como identificación.  Al terminar vas a obtener un link para enviarnos tus ejercicios. 
 
-
-
-
-
+¡Nos vemos!
 
 
 [Contenidos](../Contenidos.md) \| [Anterior (5 Teledetección)](05_Teledeteccion.md)
